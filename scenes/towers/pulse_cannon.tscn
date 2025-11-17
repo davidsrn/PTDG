@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://e0yx1n4lmqp5u"]
+
+[ext_resource type="Script" path="res://scripts/towers/defender.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tower_pulse.svg" id="2_sprite"]
+[ext_resource type="Shader" path="res://shaders/neon_glow.gdshader" id="3_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("3_shader")
+shader_parameter/glow_color = Color(1, 0, 1, 1)
+shader_parameter/glow_intensity = 2.0
+shader_parameter/glow_size = 0.1
+shader_parameter/pulse_speed = 2.0
+shader_parameter/pulse_amplitude = 0.3
+shader_parameter/enable_pulse = true
+shader_parameter/base_brightness = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 160.0
+
+[node name="PulseCannon" type="Node2D"]
+script = ExtResource("1_script")
+tower_name = "Pulse Cannon"
+base_cost = 200
+attack_range = 160.0
+attack_speed = 1.0
+damage = 1
+damage_type = "projectile"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1")
+texture = ExtResource("2_sprite")
+
+[node name="AttackPoint" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="RangeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea"]
+shape = SubResource("CircleShape2D_1")
+debug_color = Color(1, 0, 1, 0.2)

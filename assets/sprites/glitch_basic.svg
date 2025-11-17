@@ -1,0 +1,19 @@
+<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Basic Glitch Enemy - Cyan hexagon -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <polygon points="16,4 28,12 28,20 16,28 4,20 4,12"
+           fill="#00ffff"
+           stroke="#00ffff"
+           stroke-width="2"
+           filter="url(#glow)"
+           opacity="0.9"/>
+  <circle cx="16" cy="16" r="4" fill="#ffffff" opacity="0.8"/>
+</svg>

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d9wx0n3kmqp4t"]
+
+[ext_resource type="Script" path="res://scripts/enemies/glitcher.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/byte_small.svg" id="2_sprite"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 8.0
+
+[node name="ByteSmall" type="PathFollow2D"]
+script = ExtResource("1_script")
+layers = 1
+speed = 150.0
+credits_per_layer = 1
+child_glitcher = null
+child_count = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+scale = Vector2(0.8, 0.8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_top = -18.0
+offset_right = 10.0
+offset_bottom = -14.0
+max_value = 1.0
+value = 1.0
+show_percentage = false

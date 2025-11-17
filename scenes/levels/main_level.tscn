@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvxq7n8jmqp2r"]
+
+[ext_resource type="Shader" path="res://shaders/rain.gdshader" id="1_rain"]
+[ext_resource type="Shader" path="res://shaders/wet_surface.gdshader" id="2_wet"]
+[ext_resource type="Script" path="res://scripts/ui/level_ui.gd" id="3_ui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rain"]
+shader = ExtResource("1_rain")
+shader_parameter/rain_density = 400.0
+shader_parameter/rain_speed = 3.0
+shader_parameter/rain_angle = 0.1
+shader_parameter/rain_color = Color(0.5, 0.7, 1, 0.4)
+shader_parameter/rain_length = 0.02
+shader_parameter/rain_width = 0.002
+shader_parameter/enable_wind = true
+shader_parameter/wind_strength = 0.1
+
+[sub_resource type="Curve2D" id="Curve2D_path"]
+_data = {
+"points": PackedVector2Array(-50, 0, 50, 0, -50, 270, -30, -40, 30, 40, 150, 150, -40, 30, 40, -30, 300, 350, -30, -50, 30, 50, 500, 200, -50, 40, 50, -40, 700, 320, -40, 0, 40, 0, 1010, 270)
+}
+
+[node name="MainLevel" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.0980392, 0.101961, 0.180392, 1)
+
+[node name="Ground" type="ColorRect" parent="."]
+offset_top = 480.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.156863, 0.164706, 0.25098, 1)
+
+[node name="GridOverlay" type="Node2D" parent="."]
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_path")
+
+[node name="PathLine" type="Line2D" parent="EnemyPath"]
+points = PackedVector2Array(-50, 270, 150, 150, 300, 350, 500, 200, 700, 320, 1010, 270)
+width = 64.0
+default_color = Color(0.2, 0.25, 0.35, 1)
+
+[node name="TowerPlacementNodes" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_ui")
+
+[node name="TopBar" type="ColorRect" parent="UI"]
+offset_right = 960.0
+offset_bottom = 60.0
+color = Color(0.0784314, 0.0823529, 0.141176, 0.9)
+
+[node name="CreditsLabel" type="Label" parent="UI/TopBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Credits: 650"
+
+[node name="WaveLabel" type="Label" parent="UI/TopBar"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Wave: 0"
+
+[node name="HealthLabel" type="Label" parent="UI/TopBar"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 10.0
+offset_right = 700.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "Health: 100"
+
+[node name="ProcessorCoresLabel" type="Label" parent="UI/TopBar"]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 10.0
+offset_right = 950.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Cores: 0"
+
+[node name="BottomBar" type="ColorRect" parent="UI"]
+offset_top = 480.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0.0784314, 0.0823529, 0.141176, 0.9)
+
+[node name="StartWaveButton" type="Button" parent="UI/BottomBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 180.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Start Wave"
+
+[node name="RainOverlay" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_rain")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
