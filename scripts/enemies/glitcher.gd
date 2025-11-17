@@ -151,7 +151,7 @@ func _reached_end() -> void:
 
 	# Notify GameManager
 	if GameManager:
-		GameManager.enemy_reached_end(self)
+		GameManager.handle_enemy_reached_end(self)
 
 	queue_free()
 

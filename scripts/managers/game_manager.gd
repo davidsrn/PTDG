@@ -150,7 +150,7 @@ func enemy_destroyed(enemy: Node, credits_earned: int) -> void:
 
 
 ## Called when an enemy reaches the end of the path
-func enemy_reached_end(enemy: Node) -> void:
+func handle_enemy_reached_end(enemy: Node) -> void:
 	player_health -= 1
 	enemies_remaining -= 1
 	enemy_reached_end.emit()
