@@ -10,7 +10,7 @@ uniform float glow_intensity : hint_range(0.0, 5.0) = 2.0;
 uniform float glow_size : hint_range(0.0, 0.5) = 0.1;
 uniform float pulse_speed : hint_range(0.0, 10.0) = 2.0;
 uniform float pulse_amplitude : hint_range(0.0, 1.0) = 0.3;
-uniform bool enable_pulse : hint_range(0.0, 1.0) = true;
+uniform bool enable_pulse = true;
 uniform float base_brightness : hint_range(0.0, 2.0) = 1.0;
 
 void fragment() {
