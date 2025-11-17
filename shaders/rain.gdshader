@@ -10,7 +10,7 @@ uniform float rain_angle : hint_range(-1.0, 1.0) = 0.1; // Slight diagonal
 uniform vec4 rain_color : source_color = vec4(0.5, 0.7, 1.0, 0.6);
 uniform float rain_length : hint_range(0.0, 0.1) = 0.02;
 uniform float rain_width : hint_range(0.0, 0.01) = 0.002;
-uniform bool enable_wind : hint_range(0.0, 1.0) = true;
+uniform bool enable_wind = true;
 uniform float wind_strength : hint_range(0.0, 0.5) = 0.1;
 
 // Random function
